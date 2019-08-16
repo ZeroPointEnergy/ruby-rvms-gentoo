@@ -2,7 +2,7 @@
 
 license_groups = {}
 File.readlines('/usr/portage/profiles/license_groups').each do |line|
-  next unless line.start_with?(/[a-zA-Z]/)
+  next unless line =~ /^[a-zA-Z]/
   group, licenses = line.split(' ', 2)
   license_groups["@#{group}"] = licenses.split(' ').map do |license|
     license.start_with?('@') ? license_groups[license] : license
