@@ -15,7 +15,8 @@ nonfree_count = 0
 package_license_files.each do |package_license_file|
   package_licenses = File.read(package_license_file).split(' ') - ['(', ')', '||']
   unless package_licenses.all? { |pl| license_groups['@FREE'].include?(pl) }
-    puts "Unfree package found: #{package_license_file} => [#{package_licenses.join(',')}]"
+    package_name = package_license_file.split('/')[4..5].join('/')
+    puts "Unfree package found: #{package_name} => [#{package_licenses.join(',')}]"
     nonfree_count += 1
   end
 end
